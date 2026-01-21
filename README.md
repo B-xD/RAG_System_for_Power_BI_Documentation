@@ -1,5 +1,8 @@
 # Power BI RAG Documentation Assistant
 
+## Project Structure
+
+```text
 powerbi-rag-documentation-assistant/
 ├── data/
 │   └── PowerBI.pdf
@@ -17,6 +20,7 @@ powerbi-rag-documentation-assistant/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+
 
 
 ## Overview
