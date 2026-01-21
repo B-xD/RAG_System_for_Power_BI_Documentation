@@ -1,5 +1,24 @@
 # Power BI RAG Documentation Assistant
 
+powerbi-rag-documentation-assistant/
+├── data/
+│   └── PowerBI.pdf
+├── vector_db/
+│   └── powerBI_db/
+├── src/
+│   ├── ingest.py          # PDF loading + chunking
+│   ├── embeddings.py     # Vector DB creation
+│   ├── retriever.py      # Similarity search
+│   ├── prompts.py        # System & user prompts
+│   ├── rag_chat.py       # CLI chatbot
+│   └── config.py
+├── notebooks/
+│   └── exploration.ipynb
+├── requirements.txt
+├── README.md
+└── .gitignore
+
+
 ## Overview
 A Retrieval-Augmented Generation (RAG) system that enables users to query
 official Microsoft Power BI documentation using natural language and receive
