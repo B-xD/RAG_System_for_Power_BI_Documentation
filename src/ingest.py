@@ -1,16 +1,18 @@
 # ingest.py
 
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from config import PDF_PATH, CHUNK_SIZE, CHUNK_OVERLAP, ENCODING_NAME
 
 #Load our pdf file from the data directory 
-loader = PyPDFLoader(PDF_PATH)
-documents = loader.load()
 
-def doc_splitter(documents, chunk_size, chunk_overlap):
-    """ split the document into chunks   """
+def doc_splitter(pdf_path = PDF_PATH, chunk_size = CHUNK_SIZE , chunk_overlap = CHUNK_OVERLAP):
+    """ Load and split the document into chunks   """
+
+    documents = PyPDFDirectoryLoader(pdf_path)
+    #documents = loader.load()
     
     splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
         encoding_name = ENCODING_NAME,
@@ -18,10 +20,10 @@ def doc_splitter(documents, chunk_size, chunk_overlap):
         chunk_overlap=CHUNK_OVERLAP
     )
 
-    chunks = splitter.split_documents(documents)
+    chunks = documents.load_and_split(splitter)
 
     if chunks:
-        for i, chunk in enumerate(chunks):
+        for i, chunk in enumerate(chunks[:5]):
             print(f'\n --- chunk {i+1} --')
             print(f'producer:{chunk.metadata['producer']}')
             print(f'creator:{chunk.metadata['creator']}')
@@ -41,5 +43,5 @@ def doc_splitter(documents, chunk_size, chunk_overlap):
 
 
 if __name__ == "__main__":
-    chunks = doc_splitter(documents,CHUNK_SIZE, CHUNK_OVERLAP )
+    chunks = doc_splitter()
     print(f"Loaded {len(chunks)} chunks from PDF")
