@@ -25,5 +25,3 @@ CHUNK_OVERLAP = 16
 
 # ========= Retrieval =========
 TOP_K = 5
-
-print(BASE_URL)

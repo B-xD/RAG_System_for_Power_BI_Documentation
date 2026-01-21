@@ -18,7 +18,7 @@ def main():
     """
     print("Hello! I am you power BI assistant.")
     while True:
-        print("How may I assist? (click q to exit the chat):")
+        print("How may I assist? (click q to exit the chat)")
         question = str(input("USER: ")).strip()
 
         if question.lower()== 'q':
