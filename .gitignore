@@ -1,0 +1,7 @@
+.env
+__pycache__/
+.vector_db/
+vector_db/
+.ipynb_checkpoints/
+.chroma/
+venv/
